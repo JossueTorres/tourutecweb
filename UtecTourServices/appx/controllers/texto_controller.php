@@ -15,10 +15,10 @@ class texto_controller extends REST_Controller
     //API -  Regresa todos los registros
     function listaTextos_post()
     {
-        $sec = $this->post('cod');
-        $idm = $this->post('nom');
-        $tit = $this->post('ico');
-        $con = $this->post('aud');
+        $sec = $this->post('sec');
+        $idm = $this->post('idm');
+        $tit = $this->post('tit');
+        $con = $this->post('con');
         $filtros = array(
             'sec' => $sec,
             'idm' => $idm,
