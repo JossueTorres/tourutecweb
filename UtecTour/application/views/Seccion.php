@@ -26,16 +26,20 @@
 
           <div class="card-body cds ccddo ">
                 <button style="float:right;" class="btn btn-xs btnOir"><i class="fas fa-volume-up"></i></button>
-    <h5 class="card-title">Edificio Benito Juarez</h5>
-    <p class="card-text" style="float:left;">Benito Juárez es como la Utec ha nombrado el edificio situado en la calle Arce, 1114, como un reconocimiento a la vida y obra de Benito Pablo Juárez García, su nombre completo. Fue un abogado y político mexicano de origen zapoteca comprometido con las causas sociales; fue varias veces presidente de México, del 18 de diciembre de 1857 al 18 de julio de 1872. Hombre de actitud positiva, a quien se le conoce como el "Benemérito de las Américas" y por su célebre frase: "Entre los individuos, como entre las naciones, el respeto al derecho ajeno es la paz". Vio la luz en San Pablo Guelatao, Oaxaca, el 21 de marzo de 1806, y dejó de existir en la Ciudad de México el 18 de julio de 1872.
-
-Al darle su nombre a uno de sus edificios, la Utec reconoce su ideal y ejemplo de superación, por cuanto, desde el origen más humilde, llegó a convertirse en el líder de la consolidación republicana, que propició con su ejemplo el nacimiento de una generación consciente y orgullosa de su raza.</p>
+<?php
+if (!empty($Textos)) {
+            foreach ($Textos as $tx) {?>
+            <h5 class="card-title"><?php echo $tx->tex_titulo ?></h5>
+<p class="card-text" style="float:left;"><?php echo $tx->tex_contenido ?></p>
+                <?php } }  ?> 
 </div>
 <div class="card-body mapa_content cds ccdde hidden">
 </div>
 <div class="card-body cds ccddi hidden  ">
         <div class="galeria">
-            <?php if (!empty($lista)) {
+            <?php 
+              var_dump($lista);
+            if (!empty($lista)) {
             foreach ($lista as $li) {
                 if($li->rec_tipo == "img"){?>
                 <div><img class="on" src="<?php echo base_url('/img/'.$li->rec_url)  ?>"></div>
