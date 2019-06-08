@@ -4,7 +4,7 @@
       <div class="menu ">
             <?php if (!empty($lstSecciones)) {
                 foreach ($lstSecciones as $sc) { ?>                
-                    <div  class="boton"><img src="<?php echo base_url('/img/LogoUTECcolor.png');  ?>"><label><?php echo $sc->sec_nombre; ?></label></div>     
+                    <a href="<?php echo base_url('/Lugar/'.$sc->sec_codigo.'/1');  ?>"  class="boton"><img src="<?php echo base_url('/img/'.$sc->sec_nombre);  ?>"><label><?php echo $sc->sec_nombre; ?></label></a>     
                 <?php }
         }    ?>
       </div>

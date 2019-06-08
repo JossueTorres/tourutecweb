@@ -56,11 +56,12 @@ $route['translate_uri_dashes'] = FALSE;
 $route['Inicio'] = 'Inicio_controller/index';
 $route['Edificios'] = 'Edificios_controller/index';
 $route['Lugares'] = 'Secciones_controller/index';
+$route['Lugares/(:num)'] = 'Secciones_controller/index/$edf';
 
 $route['Login'] = 'Autenticar_controller/index';
 $route['Login/Ingresar'] = 'Autenticar_controller/Login';
 $route['Logout'] = 'Autenticar_controller/logout';
 $route['Lector'] = 'Lector_controller/index';
 $route['Lugar'] = 'Seccion_controller/index';
-$route['Lugar/(:num)'] = 'Seccion_controller/index/$id';
+$route['Lugar/(:num)/(:num)'] = 'Seccion_controller/index/$id/$idm';
 
