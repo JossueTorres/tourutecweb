@@ -61,14 +61,13 @@ class Usuarios_controller extends CI_Controller
 	{
 		// $id = (int)$this->input->post("codedf");
 		$_param = array(
-			'cod' => $this->input->post("codedf"),
-			'nom' => $this->input->post("txtNombre"),
-			'orde' => $this->input->post("txtOrden"),
-			'lat' => $this->input->post("txtLatitud"),
-			'lon' => $this->input->post("txtLongitud"),
-			'acr' => $this->input->post("txtAcronimo"),
-			'img' => $this->input->post("txtImg"),
-		);
+            'cod' => $this->input->post("codusr"),
+            'cor' => $this->input->post("txtCor"),
+            'con' => $this->input->post("txtPass"),
+            'conf' => '',
+            'estu' => $this->input->post("ddlEst"),
+            'tip' => $this->input->post("ddlTip"),
+        );
 		$postData = '';
 		//Creamos arreglo nombre/valor separado por &
 		foreach ($_param as $k => $v) {
@@ -76,7 +75,7 @@ class Usuarios_controller extends CI_Controller
 		}
 		rtrim($postData, '&');
 
-		$url = URLWS . '/Edificios/guardarDatos/';
+		$url = URLWS . '/Usuarios/guardarDatos';
 
 		//creamos nuevo recurso cURL y su Conf
 		$ch = curl_init($url);
@@ -111,7 +110,7 @@ class Usuarios_controller extends CI_Controller
 		// } else {
 		// 	$this->session->set_flashdata('error_msg', 'Error al ' . $er);
 		// }
-		header('location:' . base_url('/Edificios'));
+		header('location:' . base_url('/Usuarios'));
 	}
 
 	public function borrarDatos()
@@ -119,7 +118,7 @@ class Usuarios_controller extends CI_Controller
 		$ids = $this->input->post("chkBorrar");
 		//_________________________________________________________________
 		//Recojo y arreglo los parametros
-		$url = URLWS . '/Edificios/borrarDatos';
+		$url = URLWS . '/Usuarios/borrarDatos';
 		//_________________________________________________________________
 
 		//_________________________________________________________________

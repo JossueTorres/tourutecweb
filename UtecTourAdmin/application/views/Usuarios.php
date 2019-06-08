@@ -74,7 +74,7 @@
 					<button id="btnNuevo" class="btn btn-success btnNuevo"><span class="ion ion-plus"></span>&nbsp;Agregar</button>
 				</div>
 				<div class="box-body">
-					<form action="<?php echo base_url('lTourUtec_Admin/Edificios/Borrar'); ?>" method="post">
+					<form action="<?php echo base_url('/Usuarios/Borrar'); ?>" method="post">
 						<table class="table table-striped table-responsive">
 							<thead>
 								<tr>
@@ -90,15 +90,19 @@
 								</tr>
 							</thead>
 							<tbody>
-								<?php if (!empty($resp)) {
+								<?php if (!empty($resp) && is_array($resp)) {
 									foreach ($resp as $obj) { ?>
 										<tr>
-											<td><?php echo $obj->usr_codigo; ?></td>											
+											<td><?php echo $obj->usr_codigo; ?></td>
 											<td><?php echo $obj->usr_correo; ?></td>
-											<td><?php echo $obj->usr_tipo; ?></td>											
-											<td><?php echo $obj->usr_estado; ?></td>
+											<td><label class="label <?php if ($obj->usr_tipo == 'A') echo 'label-success';
+																	else echo 'label-info'; ?>"><?php if ($obj->usr_tipo  == 'A') echo 'Adminsitrador';
+																											else echo 'Visitante'; ?></label></td>
+											<td><label class="label <?php if ($obj->usr_estado == 'A') echo 'label-success';
+																	else echo 'label-warning'; ?>"><?php if ($obj->usr_estado == 'A') echo 'Activo';
+																							else echo 'Inactivo'; ?></label></td>
 											<td style="align:center;">
-												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('')"><i class="fa fa-edit"></i></a>
+												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('<?php echo $obj->usr_codigo ?>','<?php echo $obj->usr_correo ?>','<?php echo $obj->usr_tipo ?>','<?php echo $obj->usr_estado ?>')"><i class="fa fa-edit"></i></a>
 											</td>
 											<td>
 												<input type="checkbox" name="chkBorrar[]" class="checkbox" value="<?php ?>" />
@@ -115,7 +119,7 @@
 	</div>
 	<div class="modal fade" tabindex="-1" role="dialog" id="modalAdd">
 		<div class="modal-dialog" role="document">
-			<form method="POST" action="<?php echo base_url('/TourUtec_Admin/Edificios/Guardar') ?>">
+			<form method="POST" action="<?php echo base_url('/Usuarios/guardarDatos') ?>">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -144,7 +148,7 @@
 									<label for="txtLongitud" class="control-label">Tipo</label>
 									<select name="ddlEst" id="ddlEst" class="form-control ddlEst">
 										<option value="A">Administrador</option>
-										<!-- <option value="U">Deshabilitado</option> -->
+										<option value="L">Visitante</option>
 									</select>
 								</div>
 							</div>
@@ -169,21 +173,19 @@
 	};
 
 	function cleanFields() {
-		$('#codedf').val("0");
-		$('.txtNombre').val('');
-		$('.txtAcronimo').val('');
-		$('.txtLatitud').val('0');
-		$('.txtLongitud').val('0');
-		$('.txtOrden').val('');
+		$('#codusr').val("0");
+		$('.txtNom').val('');
+		$('.txtPass').val('').removeAttr();
+		$('.ddlEstado').val('A');
+		$('.ddlTipo').val('A');		
 	};
 
-	function edit(c, n, o, l, lo, a) {
-		$('#codedf').val(c);
-		$('.txtNombre').val(n);
-		$('.txtAcronimo').val(a);
-		$('.txtLatitud').val(l);
-		$('.txtLongitud').val(lo);
-		$('.txtOrden').val(o);
+	function edit(c, cor, n, e, t) {
+		$('#codusr').val(c);
+		$('.txtCor').val(cor);
+		$('.txtPass').val('').attr("disabled", "disabled");
+		$('.ddlEst').val(e);
+		$('.ddlTip').val(t);
 		mostrarModal();
 	};
 

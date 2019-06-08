@@ -61,6 +61,10 @@ $route['Idiomas'] = 'Idiomas_controller/index';
 $route['Idiomas/guardarDatos'] = 'Idiomas_controller/guardarDatos';
 $route['Idiomas/borrarDatos'] = 'Idiomas_controller/borrarDatos';
 
+$route['Usuarios'] = 'Usuarios_controller/index';
+$route['Usuarios/guardarDatos'] = 'Usuarios_controller/guardarDatos';
+$route['Usuarios/borrarDatos'] = 'Usuarios_controller/borrarDatos';
+
 $route['Login'] = 'Login/index';
 $route['Login/Ingresar'] = 'Autenticar_controller/Login';
 $route['Logout'] = 'Autenticar_controller/logout';
@@ -68,4 +72,4 @@ $route['TAccion'] = 'TAccion_controller/index';
 $route['Texto'] = 'Texto_controller/index';
 $route['Recursos'] = 'Recursos_controller/index';
 $route['Usuarios'] = 'Usuarios_controller/index';
-$route['Seccion'] = 'Secciones_controller/index';
+$route['Seccion/(:num)'] = 'Secciones_controller/index';
