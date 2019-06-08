@@ -32,12 +32,12 @@ let scanner = new Instascan.Scanner(
              }
          );
          scanner.addListener('scan', function(content) {
-           var url = "<?php echo base_url('/seccion/');  ?>"
+           var url = "<?php echo base_url('/Lugar/');  ?>"
               //alert('Conenido: ' + url + 1);
-             $("#ddlsec").val(content);
-             $("#ddlidm").val(1);
-          // window.open(url + content + "/1"); 
-          $("#btn-buscar-sec").click();
+            // $("#ddlsec").val(content);
+             //$("#ddlidm").val(1);
+             document.location.href =url + content + "/1"; 
+         // $("#btn-buscar-sec").click();
        });
          var ArrCamaras 
          var contCam = 0;
