@@ -5,6 +5,7 @@
 <script src="<?php echo base_url('/lib/bootstrap/dist/js/bootstrap.min.js');?>" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script> -->
 <script src="<?php echo base_url('/lib/jquery-3.4.1.min.js');?>"></script>
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <script> 
  
 var m_tr = true;
@@ -59,6 +60,18 @@ if(m_tr){
   });
 }
 });
+$(".btnOir").on('click', function(e){
+      e.preventDefault();
+      //var text = $(".card-title").text();
+    var   text = $(".card-text").text();
+      alert(text)
+      responsiveVoice.speak(text,"Spanish Latin American Female");
+      text=encodeURIComponent(text);
+     // var url=" https://audio1.spanishdict.com/audio?lang=es&text="+text
+      var url="http://translate.google.com/translate_tts?tl=es&q="+text
+      $("audio").attr("src",url).get(0).play();
+    })
+
 $(".ddsd").click(function() {
 		//alert($(this));
 		$(".ddsd").removeClass("active");
