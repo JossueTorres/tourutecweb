@@ -64,7 +64,7 @@ $(".btnOir").on('click', function(e){
       e.preventDefault();
       //var text = $(".card-title").text();
     var   text = $(".card-text").text();
-      alert(text)
+     // alert(text)
       responsiveVoice.speak(text,"Spanish Latin American Female");
       text=encodeURIComponent(text);
      // var url=" https://audio1.spanishdict.com/audio?lang=es&text="+text
