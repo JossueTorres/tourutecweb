@@ -18,7 +18,8 @@ class Seccion_controller extends CI_Controller
 		// 	$postData .= $k . '=' . $v . '&';
 		// }
 		// rtrim($postData, '&');
-
+$id = $this->uri->segment(2);
+var_dump($id);
 		$ua = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13';
 		$url = 'http://localhost:8080/UtecTourServices/Recursos/listado';
 		$ch = curl_init($url);
@@ -42,6 +43,10 @@ class Seccion_controller extends CI_Controller
         curl_close($ch);        
 		        
 		$data['lista'] = json_decode($output);
+
+		
+
+
 		$this->load->view('_layout/header');
 		$this->load->view('Seccion', $data);
 		$this->load->view('_Layout/footer');

@@ -62,3 +62,5 @@ $route['Login/Ingresar'] = 'Autenticar_controller/Login';
 $route['Logout'] = 'Autenticar_controller/logout';
 $route['Lector'] = 'Lector_controller/index';
 $route['Lugar'] = 'Seccion_controller/index';
+$route['Lugar/(:num)'] = 'Seccion_controller/index/$id';
+
