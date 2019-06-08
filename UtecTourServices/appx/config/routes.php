@@ -59,7 +59,7 @@ $route['Edificios/guardarDatos']['POST'] = 'edificios_controller/guardarDatos';
 $route['Edificios/borrarDatos']['POST'] = 'edificios_controller/borrarDatos';
 
 //Routes Seccion
-$route['Seccion/listado']['GET'] = 'seccion_controller/listaSecciones';
+$route['Seccion/listado']['POST'] = 'seccion_controller/listaSecciones';
 $route['Seccion/guardarDatos']['POST'] = 'seccion_controller/guardarDatos';
 $route['Seccion/borrarDatos']['POST'] = 'seccion_controller/borrarDatos';
 

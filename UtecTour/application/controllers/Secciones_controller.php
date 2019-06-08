@@ -23,7 +23,7 @@ class Secciones_controller extends CI_Controller
 		
 		//var_dump($id);
 		$ua = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13';
-		$url = 'http://localhost:8080/UtecTourServices/Seccion/listado';
+		$url = 'http://localhost:8080/tourutecweb/UtecTourServices/Seccion/listado';
 		$ch = curl_init($url);
 		curl_setopt($ch, CURLOPT_URL, $url);
 
