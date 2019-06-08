@@ -24,7 +24,7 @@ class clIdiomas extends CI_Model {
             'cod' => $id,
             'nom' => 0,
             'ico' => 0,            
-            'aud' => ''
+            'aud' => '',
           );
         $stored_procedure = "CALL sp_crud_idiomas(4, ?, ?, ?, ?)";
         $result = $this->db->query($stored_procedure, $data);

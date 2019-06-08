@@ -31,7 +31,7 @@ class clUsuarios extends CI_Model
   {
     $data = array(
         'cod' => $id,
-        'nom' => '',
+        'cor' => '',
         'con' => '',
         'conf' => '',
         'estu' => '',

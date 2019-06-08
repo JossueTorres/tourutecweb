@@ -13,54 +13,54 @@ class idiomas_controller extends REST_Controller
     }
 
     //API -  Regresa todos los registros
-    function listaIdiomas_get()
+    function listaIdiomas_post()
     {
-        $cod = $this->post('txtCod');
-        $nom = $this->post('txtNom');
-        $ico = $this->post('txtIco');
-        $aud = $this->post('txtAud');             
+        $cod = $this->post('cod');
+        $nom = $this->post('nom');
+        $ico = $this->post('ico');
+        $aud = $this->post('aud');
         $filtros = array(
             'cod' => $cod,
             'nom' => $nom,
-            'ico' => $ico,            
-            'aud' => $aud 
-          );
+            'ico' => $ico,
+            'aud' => $aud
+        );
         $list = $this->clIdiomas->getListaIdiomas($filtros);
         if ($list) {
             $result = array('resp' => $list);
-            $this->response($list, REST_Controller::HTTP_OK);
+            $this->response(array('resp' => $list), REST_Controller::HTTP_OK);
         } else {
-            $this->response("No hay registros",  REST_Controller::HTTP_NOT_FOUND);
+            $this->response(array('resp' => "No hay registros"),  REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
     //API - Guarda y actualiza los datos
     function guardarDatos_post()
     {
-        $cod = $this->post('txtCod');
-        $nom = $this->post('txtNom');
-        $ico = $this->post('txtIco');
-        $aud = $this->post('txtAud');             
+        $cod = $this->post('cod');
+        $nom = $this->post('nom');
+        $ico = $this->post('ico');
+        $aud = $this->post('aud');
         $data = array(
             'cod' => $cod,
             'nom' => $nom,
-            'ico' => $ico,            
-            'aud' => $aud 
-          );
+            'ico' => $ico,
+            'aud' => $aud
+        );
         $result = $this->clIdiomas->guardarDatos($cod, $data);
         if ($result)
             $this->response(array('status' => 'Registro se guardo correctamente'), REST_Controller::HTTP_OK);
         else
-            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);        
+            $this->response(array('status' => 'fallo'), REST_Controller::HTTP_NOT_FOUND);
     }
 
     //API - Borra registros
     function borrarDatos_post()
     {
-        $id = $this->post('txtCod');
+        $id = $this->post('cod');
         if (!$id) {
             $this->response("Parámetro Perdido", REST_Controller::HTTP_NOT_FOUND);
-        }        
+        }
         if ($result = $this->clIdiomas->borrarDatos($id)) {
             $this->response("Elminado Correctamente. ", REST_Controller::HTTP_OK);
         } else {

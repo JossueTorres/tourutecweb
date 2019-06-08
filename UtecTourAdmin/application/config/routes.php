@@ -57,11 +57,14 @@ $route['Edificios'] = 'Edificios_controller/index';
 $route['Edificios/guardarDatos'] = 'Edificios_controller/guardarDatos';
 $route['Edificios/borrarDatos'] = 'Edificios_controller/borrarDatos';
 
+$route['Idiomas'] = 'Idiomas_controller/index';
+$route['Idiomas/guardarDatos'] = 'Idiomas_controller/guardarDatos';
+$route['Idiomas/borrarDatos'] = 'Idiomas_controller/borrarDatos';
+
 $route['Login'] = 'Login/index';
 $route['Login/Ingresar'] = 'Autenticar_controller/Login';
 $route['Logout'] = 'Autenticar_controller/logout';
 $route['TAccion'] = 'TAccion_controller/index';
-$route['Idiomas'] = 'Idiomas_controller/index';
 $route['Texto'] = 'Texto_controller/index';
 $route['Recursos'] = 'Recursos_controller/index';
 $route['Usuarios'] = 'Usuarios_controller/index';

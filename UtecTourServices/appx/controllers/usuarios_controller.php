@@ -13,17 +13,17 @@ class usuarios_controller extends REST_Controller
     }
 
     //API -  Regresa todos los edificios con opción de top
-    function listaUsuarios_get()
+    function listaUsuarios_post()
     {
-        $cod = $this->post('txtCod');
-        $cor = $this->post('txtCor');
-        $con = $this->post('txtCon');
-        $conf = $this->post('txtConf');
-        $estu = $this->post('txtEstu');
-        $tip = $this->post('ddlTip');
+        $cod = $this->post('cod');
+        $cor = $this->post('cor');
+        $con = $this->post('con');
+        $conf = $this->post('conf');
+        $estu = $this->post('estu');
+        $tip = $this->post('tip');
         $filtros = array(
             'cod' => $cod,
-            'nom' => $cor,
+            'cor' => $cor,
             'con' => $con,
             'conf' => $conf,
             'estu' => $estu,
@@ -32,24 +32,24 @@ class usuarios_controller extends REST_Controller
         $list = $this->clUsuarios->getListaUsuarios($filtros);
         if ($list) {
             $result = array('resp' => $list);
-            $this->response($list, REST_Controller::HTTP_OK);
+            $this->response(array('resp' => $list), REST_Controller::HTTP_OK);
         } else {
-            $this->response("No hay registros",  REST_Controller::HTTP_NOT_FOUND);
+            $this->response(array('resp' => "No hay registros"),  REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
     //API - Guarda y actualiza los datos
     function guardarDatos_post()
     {
-        $cod = $this->post('txtCod');
-        $cor = $this->post('txtCor');
-        $con = $this->post('txtCon');
-        $conf = $this->post('txtConf');
-        $estu = $this->post('txtEstu');
-        $tip = $this->post('ddlTip');
+        $cod = $this->post('cod');
+        $cor = $this->post('cor');
+        $con = $this->post('con');
+        $conf = $this->post('conf');
+        $estu = $this->post('estu');
+        $tip = $this->post('tip');
         $data = array(
             'cod' => $cod,
-            'nom' => $cor,
+            'cor' => $cor,
             'con' => $con,
             'conf' => $conf,
             'estu' => $estu,
@@ -65,10 +65,10 @@ class usuarios_controller extends REST_Controller
     //API - Borra registros
     function borrarDatos_post()
     {
-        $id = $this->post('txtCod');
+        $id = $this->post('cod');
         if (!$id) {
             $this->response("Parámetro Perdido", REST_Controller::HTTP_NOT_FOUND);
-        }        
+        }
         if ($result = $this->clUsuarios->borrarDatos($id)) {
             $this->response("Elminado Correctamente. ", REST_Controller::HTTP_OK);
         } else {

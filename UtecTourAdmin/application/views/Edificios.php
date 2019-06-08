@@ -3,13 +3,16 @@
 		<div class="col-sm-12">
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<h1>Edificios&nbsp;<span class="ion ion-android-home"></span></h1>
-				<!-- <?php $ardat = $this->session->userdata("logged_in");echo $ardat['ou']; echo $ardat['pd'];   ?> -->
+				<!-- <?php $ardat = $this->session->userdata("logged_in");
+						echo $ardat['ou'];
+						echo $ardat['pd'];   ?> -->
 			</div>
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<div class="row">
 					<?php if ($this->session->flashdata('success_msg')) {
 						?>
-						<div class="container "> <!-- alert alert-success -->
+						<div class="container ">
+							<!-- alert alert-success -->
 							<div class="col-sm-11">
 								<?php echo $this->session->flashdata('success_msg'); ?>
 							</div>
@@ -20,7 +23,8 @@
 					<?php
 				} else if ($this->session->flashdata('error_msg')) {
 					?>
-						<div class="container "> <!-- alert alert-danger -->
+						<div class="container ">
+							<!-- alert alert-danger -->
 							<div class="col-sm-11">
 								<?php echo $this->session->flashdata('error_msg'); ?>
 							</div>
@@ -38,25 +42,25 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="box box-success">
-				<form method="POST" action="<?php echo base_url('/TourUtec_Admin/Edificios/Buscar') ?>" name="formFil">
+				<form method="POST" action="<?php echo base_url('/Edificios') ?>" name="formFil">
 					<div class="box-header with-border">
 						<h4>Filtros</h4>
 					</div>
 					<div class="box-body">
 						<div class="row">
 							<div class="col-sm-3">
-								<label for="txtNombreFil">Nombre:</label>
-								<input id="txtNombreFil" name="txtNombreFil" type="text" class="form-control txtNombreFil" placeholder="Nombre">
+								<label for="txtNomFil">Nombre</label>
+								<input id="txtNomFil" name="txtNomFil" type="text" class="form-control txtNomFil" placeholder="Nombre">
 							</div>
 							<div class="col-sm-3">
-								<label for="txtAcronimoFil">Acrónimo:</label>
-								<input id="txtAcronimoFil" name="txtAcronimoFil" type="text" class="form-control txtAcronimoFil" placeholder="Acrónimo">
+								<label for="txtAcrFil">Acrónimo</label>
+								<input id="txtAcrFil" name="txtAcrFil" type="text" class="form-control txtAcrFil" placeholder="Acrónimo">
 							</div>
 						</div>
 					</div>
 					<div class="box-footer with-border">
 						<div class="pull-right">
-							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/TourUtec_Admin/Edificios') ?>" class="btn btn-danger">Limpiar</a>
+							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/Edificios') ?>" class="btn btn-danger">Limpiar</a>
 							<button type="submit" class="btn btn-primary"><span class="ion ion-search"></span>&nbsp;Buscar</button>
 						</div>
 					</div>
@@ -70,7 +74,7 @@
 				</div>
 				<div class="box-body">
 					<form action="<?php echo base_url('/Edificios/borrarDatos'); ?>" method="POST">
-						<table class="table table-striped table-responsive">
+						<table class="table table-striped table-responsive tabla">
 							<thead>
 								<tr>
 									<th>Código</th>
@@ -78,45 +82,20 @@
 									<th>Acrónimo</th>
 									<th>Modificar</th>
 									<th class="text-center">
-										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar" onclick="return confimar('borrar');">Borrar</button>
+										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar pull-right" onclick="return confimar('borrar');"><i class="fa fa-trash"></i></button>
 										<input type="checkbox" name="todo" id="todo" class="checkbox" />
 									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- <tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr> -->
-								<?php if (!empty($lstEdificios)) {
-									foreach ($lstEdificios as $ed) { ?>
+								<?php if (!empty($resp) && is_array($resp)) {
+									foreach ($resp as $ed) { ?>
 										<tr>
 											<td><?php echo $ed->edf_codigo; ?></td>
 											<td><?php echo $ed->edf_nombre; ?></td>
 											<td><?php echo $ed->edf_acronimo; ?></td>
 											<td class="text-center">
-												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('<?php echo $ed->edf_codigo ?>','<?php echo $ed->edf_nombre ?>','<?php echo $ed->edf_orden ?>','<?php echo $ed->edf_latitud ?>','<?php echo $ed->edf_longitud ?>','<?php echo $ed->edf_acronimo ?>')">Modificar</a>
+												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('<?php echo $ed->edf_codigo ?>','<?php echo $ed->edf_nombre ?>','<?php echo $ed->edf_orden ?>','<?php echo $ed->edf_latitud ?>','<?php echo $ed->edf_longitud ?>','<?php echo $ed->edf_acronimo ?>')"><i class="fa fa-edit"></i></a>
 											</td>
 											<td>
 												<input type="checkbox" name="chkBorrar[]" class="checkbox" value="<?php echo $ed->edf_codigo; ?>" />
@@ -137,7 +116,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4>Datos de la Persona</h4>
+						<h4>Datos del Edificio</h4>
 						<input type="hidden" id="codedf" name="codedf" class="codedf">
 					</div>
 					<div class="modal-body">
@@ -145,7 +124,7 @@
 							<div class="col-sm-12">
 								<div class="col-sm-6">
 									<label for="txtNombre" class="control-label">Nombre</label>
-									<input type="text" id="txtNombre" name="txtNombre" class="form-control txtNombre" placeholder="Nombre" maxlength="99"  required="required">
+									<input type="text" id="txtNombre" name="txtNombre" class="form-control txtNombre" placeholder="Nombre" maxlength="99" required="required">
 								</div>
 								<div class="col-sm-6">
 									<label for="txtAcronimo" class="control-label">Acrónimo</label>
@@ -164,8 +143,7 @@
 									<input type="number" id="txtOrden" name="txtOrden" class="form-control txtOrden" placeholder="Número Orden" required="required">
 								</div>
 								<div class="col-sm-6">
-									<label for="txtOrden" class="control-label">Orden</label>
-									<!-- <input type="number" id="txtOrden" name="txtOrden" class="form-control txtOrden" placeholder="Número Orden" required="required"> -->
+									<label for="txtImg" class="control-label">Imagen</label>
 									<input type="file" id="txtImg" name="txtImg" class="form-control txtimg">
 								</div>
 							</div>
@@ -196,6 +174,8 @@
 		$('.txtLatitud').val('0');
 		$('.txtLongitud').val('0');
 		$('.txtOrden').val('');
+		$img = $('.txtImg');
+		$img.replaceWith($img.clone(true));
 	};
 
 	function edit(c, n, o, l, lo, a) {

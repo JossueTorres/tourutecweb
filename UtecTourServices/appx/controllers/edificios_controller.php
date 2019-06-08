@@ -13,15 +13,15 @@ class edificios_controller extends REST_Controller
     }
 
     //API -  Regresa todos los edificios con opción de top
-    function listaEdificios_get()
+    function listaEdificios_post()
     {
-        $cod = $this->post('txtCod');
-        $nom = $this->post('txtNom');
-        $orde = $this->post('txtOrd');
-        $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $cod = $this->post('cod');
+        $nom = $this->post('nom');
+        $orde = $this->post('orde');
+        $lat = $this->post('lat');
+        $lon = $this->post('lon');
+        $acr = $this->post('acr');
+        $img = $this->post('img');
         $filtros = array(
             'cod' => $cod,
             'nom' => $nom,
@@ -34,22 +34,22 @@ class edificios_controller extends REST_Controller
         $list = $this->clEdificios->getEdificios($filtros);
         if ($list) {
             $result = array('resp' => $list);
-            $this->response($list, REST_Controller::HTTP_OK);
+            $this->response(array('resp' => $list), REST_Controller::HTTP_OK);
         } else {
-            $this->response("No hay registros",  REST_Controller::HTTP_NOT_FOUND);
+            $this->response(array('resp' => 'No hay registros'),  REST_Controller::HTTP_NOT_FOUND);
         }
     }
 
     //API - Guarda y actualiza los datos
     function guardarDatos_post()
     {
-        $cod = (int)$this->post('txtCod');
-        $nom = $this->post('txtNom');
-        $orde = (int)$this->post('txtOrd');
-        $lat = (double)$this->post('txtLat');
-        $lon = (double)$this->post('txtLon');
-        $acr = $this->post('txtAcr');
-        $img = $this->post('txtImg');
+        $cod = (int)$this->post('cod');
+        $nom = $this->post('nom');
+        $orde = (int)$this->post('orde');
+        $lat = (double)$this->post('lat');
+        $lon = (double)$this->post('lon');
+        $acr = $this->post('acr');
+        $img = $this->post('img');
         $data = array(
             'cod' => $cod,
             'nom' => $nom,
@@ -75,11 +75,11 @@ class edificios_controller extends REST_Controller
     //API - Borra registros
     function borrarDatos_post()
     {
-        $id = $this->post('txtCod');
+        $id = $this->post('cod');
         if (!$id) {
             $this->response("Parámetro Perdido", REST_Controller::HTTP_NOT_FOUND);
         }
-        if ($result = $this->clEdificios->borrarDatos($id)) {
+        if ($this->clEdificios->borrarDatos($id)) {
             $this->response("Elminado Correctamente. ", REST_Controller::HTTP_OK);
         } else {
             $this->response("Error al Eliminar", REST_Controller::HTTP_BAD_REQUEST);

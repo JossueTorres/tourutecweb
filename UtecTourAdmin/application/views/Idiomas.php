@@ -3,7 +3,9 @@
 		<div class="col-sm-12">
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<h1>Idiomas&nbsp;<span class="ion ion-android-home"></span></h1>
-				<!-- <?php $ardat = $this->session->userdata("logged_in");echo $ardat['ou']; echo $ardat['pd'];   ?> -->
+				<!-- <?php $ardat = $this->session->userdata("logged_in");
+						echo $ardat['ou'];
+						echo $ardat['pd'];   ?> -->
 			</div>
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<div class="row">
@@ -37,31 +39,27 @@
 <div class="content">
 	<div class="row">
 		<div class="col-sm-12">
-			<!--<div class="box box-success">
-				<form method="POST" action="<?php echo base_url('/TourUtec_Admin/Edificios/Buscar') ?>" name="formFil">
+			<div class="box box-success">
+				<form method="POST" action="<?php echo base_url('/Idiomas') ?>" name="formFil">
 					<div class="box-header with-border">
 						<h4>Filtros</h4>
 					</div>
 					<div class="box-body">
 						<div class="row">
 							<div class="col-sm-3">
-								<label for="txtNombreFil">Nombre:</label>
-								<input id="txtNombreFil" name="txtNombreFil" type="text" class="form-control txtNombreFil" placeholder="Nombre">
-							</div>
-							<div class="col-sm-3">
-								<label for="txtAcronimoFil">Acrónimo:</label>
-								<input id="txtAcronimoFil" name="txtAcronimoFil" type="text" class="form-control txtAcronimoFil" placeholder="Acrónimo">
-							</div>
+								<label for="txtNomFil">Nombre</label>
+								<input id="txtNomFil" name="txtNomFil" type="text" class="form-control txtNomFil" placeholder="Nombre">
+							</div>							
 						</div>
 					</div>
 					<div class="box-footer with-border">
 						<div class="pull-right">
-							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/TourUtec_Admin/Edificios') ?>" class="btn btn-danger">Limpiar</a>
+							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/Idiomas') ?>" class="btn btn-danger">Limpiar</a>
 							<button type="submit" class="btn btn-primary"><span class="ion ion-search"></span>&nbsp;Buscar</button>
 						</div>
 					</div>
 				</form>
-			</div>-->
+			</div>
 		</div>
 		<div class="col-sm-12">
 			<div class="box box-primary">
@@ -69,58 +67,34 @@
 					<button id="btnNuevo" class="btn btn-success btnNuevo"><span class="ion ion-plus"></span>&nbsp;Agregar</button>
 				</div>
 				<div class="box-body">
-					<form action="<?php echo base_url('lTourUtec_Admin/Edificios/Borrar'); ?>" method="post">
+					<form action="<?php echo base_url('/Idiomas/borrarDatos'); ?>" method="post">
 						<table class="table table-striped table-responsive">
 							<thead>
 								<tr>
 									<th>Código</th>
 									<th>Nombre</th>
-									<th>Acrónimo</th>
+									<th>Icono</th>
+									<th>Audio</th>
 									<th>Modificar</th>
 									<th class="text-center">
-										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar" onclick="return confimar('borrar');">Borrar</button>
+										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar pull-right" onclick="return confimar('borrar');"><i class="fa fa-trash"></i></button>
 										<input type="checkbox" name="todo" id="todo" class="checkbox" />
 									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- <tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr> -->
-								<?php if (!empty($listado)) {
-									foreach ($listado as $obj) { ?>
+								<?php if (!empty($resp) && is_array($resp)) {
+									foreach ($resp as $obj) { ?>
 										<tr>
 											<td><?php echo $obj->idm_codigo; ?></td>
 											<td><?php echo $obj->idm_nombre; ?></td>
-                                            <td><?php echo $obj->idm_icono; ?></td>
-                                            <td><?php echo $obj->idm_audio; ?></td>
+											<td><?php echo $obj->idm_icono; ?></td>
+											<td><?php echo $obj->idm_audio; ?></td>
 											<td class="text-center">
-												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('')">Modificar</a>
+												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('<?php echo $obj->idm_codigo ?>','<?php echo $obj->idm_nombre ?>');"><i class="fa fa-edit"></i></a>
 											</td>
 											<td>
-												<input type="checkbox" name="chkBorrar[]" class="checkbox" value="<?php ?>" />
+												<input type="checkbox" name="chkBorrar[]" class="checkbox" value="<?php echo $obj->idm_codigo ?>" />
 											</td>
 										</tr>
 									<?php }
@@ -134,35 +108,27 @@
 	</div>
 	<div class="modal fade" tabindex="-1" role="dialog" id="modalAdd">
 		<div class="modal-dialog" role="document">
-			<form method="POST" action="<?php echo base_url('/TourUtec_Admin/Edificios/Guardar') ?>">
+			<form method="POST" action="<?php echo base_url('/Idiomas/guardarDatos') ?>">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						<h4>Datos de la Persona</h4>
-						<input type="hidden" id="codedf" name="codedf" class="codedf">
+						<h4>Datos del Idioma</h4>
+						<input type="hidden" id="codidm" name="codidm" class="codidm">
 					</div>
 					<div class="modal-body">
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="col-sm-6">
-									<label for="txtNombre" class="control-label">Nombre</label>
-									<input type="text" id="txtNombre" name="txtNombre" class="form-control txtNombre" placeholder="Nombre" required="required">
+									<label for="txtNom" class="control-label">Nombre</label>
+									<input type="text" id="txtNom" name="txtNom" class="form-control txtNom" placeholder="Nombre" required="required">
 								</div>
 								<div class="col-sm-6">
-									<label for="txtAcronimo" class="control-label">Acrónimo</label>
-									<input type="text" id="txtAcronimo" name="txtAcronimo" class="form-control txtAcronimo" placeholder="Acrónimo" required="required">
+									<label for="txtIco" class="control-label">Icono</label>
+									<input type="file" id="txtIco" name="txtIco" class="form-control txtIco">
 								</div>
 								<div class="col-sm-6">
-									<label for="txtLatitud" class="control-label">Latitud</label>
-									<input type="number" id="txtLatitud" name="txtLatitud" class="form-control txtLatitud" placeholder="Coordenada 1" required="required">
-								</div>
-								<div class="col-sm-6">
-									<label for="txtLongitud" class="control-label">Longitud</label>
-									<input type="number" id="txtLongitud" name="txtLongitud" class="form-control txtLongitud" placeholder="Coordenada 2" required="required">
-								</div>
-								<div class="col-sm-6">
-									<label for="txtOrden" class="control-label">Orden</label>
-									<input type="number" id="txtOrden" name="txtOrden" class="form-control txtOrden" placeholder="Número Orden" required="required">
+									<label for="txtAud" class="control-label">Audio</label>
+									<input type="file" id="txtAud" name="txtAud" class="form-control txtAud">
 								</div>
 							</div>
 						</div>
@@ -175,32 +141,23 @@
 		</div>
 	</div>
 </div>
-<script>
-	function cleanFil() {
-		$(".txtNombre").val("");
-		$(".txtAcronimo").val("");
-	}
-
+<script> 
 	function mostrarModal() {
 		$("#modalAdd").modal('show');
 	};
 
 	function cleanFields() {
-		$('#codedf').val("0");
-		$('.txtNombre').val('');
-		$('.txtAcronimo').val('');
-		$('.txtLatitud').val('0');
-		$('.txtLongitud').val('0');
-		$('.txtOrden').val('');
+		$('#codidm').val("0");
+		$('.txtNom').val('');
+		$ico = $('.txtIco');
+		$ico.replaceWith($ico.clone(true));
+		$aud = $('.txtAud');
+		$aud.replaceWith($aud.clone(true));
 	};
 
-	function edit(c, n, o, l, lo, a) {
-		$('#codedf').val(c);
-		$('.txtNombre').val(n);
-		$('.txtAcronimo').val(a);
-		$('.txtLatitud').val(l);
-		$('.txtLongitud').val(lo);
-		$('.txtOrden').val(o);
+	function edit(c, n) {
+		$('#codidm').val(c);
+		$('.txtNom').val(n);
 		mostrarModal();
 	};
 

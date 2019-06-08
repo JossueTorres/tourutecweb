@@ -3,7 +3,9 @@
 		<div class="col-sm-12">
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<h1>Usuarios&nbsp;<span class="ion ion-android-home"></span></h1>
-				<!-- <?php $ardat = $this->session->userdata("logged_in");echo $ardat['ou']; echo $ardat['pd'];   ?> -->
+				<!-- <?php $ardat = $this->session->userdata("logged_in");
+						echo $ardat['ou'];
+						echo $ardat['pd'];   ?> -->
 			</div>
 			<div class="col-md-12 col-sm-6 col-xs-12">
 				<div class="row">
@@ -38,25 +40,28 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<div class="box box-success">
-				<form method="POST" action="<?php echo base_url('/TourUtec_Admin/Edificios/Buscar') ?>" name="formFil">
+				<form method="POST" action="<?php echo base_url('/Usuarios') ?>" name="formFil">
 					<div class="box-header with-border">
 						<h4>Filtros</h4>
 					</div>
 					<div class="box-body">
 						<div class="row">
 							<div class="col-sm-3">
-								<label for="txtNombreFil">Nombre:</label>
-								<input id="txtNombreFil" name="txtNombreFil" type="text" class="form-control txtNombreFil" placeholder="Nombre">
+								<label for="txtCorFil">Correo</label>
+								<input id="txtCorFil" name="txtCorFil" type="email" class="form-control txtCorFil" placeholder="Correo">
 							</div>
 							<div class="col-sm-3">
-								<label for="txtAcronimoFil">Acrónimo:</label>
-								<input id="txtAcronimoFil" name="txtAcronimoFil" type="text" class="form-control txtAcronimoFil" placeholder="Acrónimo">
+								<label for="ddlEstFil">Estado</label>
+								<select name="ddlEstFil" id="ddlEstFil" class="form-control ddlEstFil">
+									<option value="A">Activo</option>
+									<option value="I">Inactivo</option>
+								</select>
 							</div>
 						</div>
 					</div>
 					<div class="box-footer with-border">
 						<div class="pull-right">
-							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/TourUtec_Admin/Edificios') ?>" class="btn btn-danger">Limpiar</a>
+							<a role="button" onclick="javascript:return cleanFields();" href="<?php echo base_url('/Usuarios') ?>" class="btn btn-danger">Limpiar</a>
 							<button type="submit" class="btn btn-primary"><span class="ion ion-search"></span>&nbsp;Buscar</button>
 						</div>
 					</div>
@@ -74,49 +79,26 @@
 							<thead>
 								<tr>
 									<th>Código</th>
-									<th>Nombre</th>
-									<th>Acrónimo</th>
-									<th>Modificar</th>
-									<th class="text-center">
-										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar" onclick="return confimar('borrar');">Borrar</button>
+									<th>Correo</th>
+									<th>Tipo</th>
+									<th>Estado</th>
+									<th style="align:center;">Modificar</th>
+									<th>
+										<button type="submit" name="btnBorrar" id="btnBorrar" class="btn btn-danger btn-xs btnBorrar pull-right" onclick="return confimar('borrar');"><i class="fa fa-trash"></i></button>
 										<input type="checkbox" name="todo" id="todo" class="checkbox" />
 									</th>
 								</tr>
 							</thead>
 							<tbody>
-								<!-- <tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr>
-							<tr>
-								<td>Text1</td>
-								<td>Text2</td>
-								<td>Text3</td>
-							</tr> -->
-								<?php if (!empty($listado)) {
-									foreach ($listado as $obj) { ?>
+								<?php if (!empty($resp)) {
+									foreach ($resp as $obj) { ?>
 										<tr>
+											<td><?php echo $obj->usr_codigo; ?></td>											
 											<td><?php echo $obj->usr_correo; ?></td>
-                                            <td><?php echo $obj->usr_contrasena; ?></td>
-                                            <td><?php echo $obj->usr_estado; ?></td>
-											<td class="text-center">
-												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('')">Modificar</a>
+											<td><?php echo $obj->usr_tipo; ?></td>											
+											<td><?php echo $obj->usr_estado; ?></td>
+											<td style="align:center;">
+												<a href="#" name="btnEditar" id="btnEditar" class="btn btn-info btn-xs" onclick="edit('')"><i class="fa fa-edit"></i></a>
 											</td>
 											<td>
 												<input type="checkbox" name="chkBorrar[]" class="checkbox" value="<?php ?>" />
@@ -144,24 +126,26 @@
 						<div class="row">
 							<div class="col-sm-12">
 								<div class="col-sm-6">
-									<label for="txtNombre" class="control-label">Nombre</label>
-									<input type="text" id="txtNombre" name="txtNombre" class="form-control txtNombre" placeholder="Nombre" required="required">
+									<label for="txtCor" class="control-label">Correo</label>
+									<input type="text" id="txtCor" name="txtCor" class="form-control txtCor" placeholder="Correo" required="required">
 								</div>
 								<div class="col-sm-6">
-									<label for="txtAcronimo" class="control-label">Acrónimo</label>
-									<input type="text" id="txtAcronimo" name="txtAcronimo" class="form-control txtAcronimo" placeholder="Acrónimo" required="required">
+									<label for="txtPass" class="control-label">Contraseña</label>
+									<input type="text" id="txtPass" name="txtPass" class="form-control txtPass" placeholder="Contraseña" required="required">
 								</div>
 								<div class="col-sm-6">
-									<label for="txtLatitud" class="control-label">Latitud</label>
-									<input type="number" id="txtLatitud" name="txtLatitud" class="form-control txtLatitud" placeholder="Coordenada 1" required="required">
+									<label for="ddlEst" class="control-label">Estado</label>
+									<select name="ddlEst" id="ddlEst" class="form-control ddlEst">
+										<option value="A">Activo</option>
+										<option value="I">Inactivo</option>
+									</select>
 								</div>
 								<div class="col-sm-6">
-									<label for="txtLongitud" class="control-label">Longitud</label>
-									<input type="number" id="txtLongitud" name="txtLongitud" class="form-control txtLongitud" placeholder="Coordenada 2" required="required">
-								</div>
-								<div class="col-sm-6">
-									<label for="txtOrden" class="control-label">Orden</label>
-									<input type="number" id="txtOrden" name="txtOrden" class="form-control txtOrden" placeholder="Número Orden" required="required">
+									<label for="txtLongitud" class="control-label">Tipo</label>
+									<select name="ddlEst" id="ddlEst" class="form-control ddlEst">
+										<option value="A">Administrador</option>
+										<!-- <option value="U">Deshabilitado</option> -->
+									</select>
 								</div>
 							</div>
 						</div>

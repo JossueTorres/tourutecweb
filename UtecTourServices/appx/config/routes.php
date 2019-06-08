@@ -49,12 +49,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'Autenticar_controller';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 //Routes Edificios
-$route['Edificios/listado']['GET'] = 'edificios_controller/listaEdificios';
+$route['Edificios/listado']['POST'] = 'edificios_controller/listaEdificios';
 $route['Edificios/guardarDatos']['POST'] = 'edificios_controller/guardarDatos';
 $route['Edificios/borrarDatos']['POST'] = 'edificios_controller/borrarDatos';
 
@@ -64,27 +64,27 @@ $route['Seccion/guardarDatos']['POST'] = 'seccion_controller/guardarDatos';
 $route['Seccion/borrarDatos']['POST'] = 'seccion_controller/borrarDatos';
 
 //Routes Tipo Accion
-$route['TAccion/listado']['GET'] = 'tipoAccion_controller/listaTiposAcciones';
+$route['TAccion/listado']['POST'] = 'tipoAccion_controller/listaTiposAcciones';
 $route['TAccion/guardarDatos']['POST'] = 'tipoAccion_controller/guardarDatos';
 $route['TAccion/borrarDatos']['POST'] = 'tipoAccion_controller/borrarDatos';
 
 //Routes idiomas
-$route['Idiomas/listado']['GET'] = 'idiomas_controller/listaIdiomas';
+$route['Idiomas/listado']['POST'] = 'idiomas_controller/listaIdiomas';
 $route['Idiomas/guardarDatos']['POST'] = 'idiomas_controller/guardarDatos';
 $route['Idiomas/borrarDatos']['POST'] = 'idiomas_controller/borrarDatos';
 
 //Routes idiomas
-$route['Texto/listado']['GET'] = 'texto_controller/listaTextos';
+$route['Texto/listado']['POST'] = 'texto_controller/listaTextos';
 $route['Texto/guardarDatos']['POST'] = 'texto_controller/guardarDatos';
 $route['Texto/borrarDatos']['POST'] = 'texto_controller/borrarDatos';
 
 //Routes Recursos
-$route['Recursos/listado']['GET'] = 'recurso_controller/listaRecursos';
+$route['Recursos/listado']['POST'] = 'recurso_controller/listaRecursos';
 $route['Recursos/guardarDatos']['POST'] = 'recurso_controller/guardarDatos';
 $route['Recursos/borrarDatos']['POST'] = 'recurso_controller/borrarDatos';
 
 //Routes usuarios
-$route['Usuarios/listado']['GET'] = 'usuarios_controller/listaUsuarios';
+$route['Usuarios/listado']['POST'] = 'usuarios_controller/listaUsuarios';
 $route['Usuarios/guardarDatos']['POST'] = 'usuarios_controller/guardarDatos';
 $route['Usuarios/borrarDatos']['POST'] = 'usuarios_controller/borrarDatos';
 

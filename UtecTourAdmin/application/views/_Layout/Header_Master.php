@@ -107,19 +107,33 @@
         <!-- /.search form -->
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
-          <li class="active treeview menu-open">
+          <li class="treeview">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>Catalogos</span>
+              <i class="fa fa-book"></i>&nbsp;<span>Catálogos</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="<?php echo base_url(''); ?>"><i class="fa fa-circle-o"></i>&nbsp;Edificios</a></li>
-              <li class="active"><a href="#"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+              <li><a href="<?php echo base_url('/Edificios'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Edificios</a></li>
+              <li><a href="<?php echo base_url('/Idiomas'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Idiomas</a></li>
+              <li><a href="<?php echo base_url('/TAccion'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Tipos de Acción</a></li>
+              <li><a href="<?php echo base_url('/Usuarios'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Usuarios</a></li>
             </ul>
           </li>
-
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-globe"></i>&nbsp;<span>Tour</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="<?php echo base_url('/Secciones'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Secciones</a></li>
+              <li><a href="<?php echo base_url('/Textos'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Textos</a></li>
+              <li><a href="<?php echo base_url('/Recursos'); ?>"><i class="fa fa-circle-o"></i>&nbsp;Recursos</a></li>
+            </ul>
+          </li>
         </ul>
       </section>
       <!-- /.sidebar -->
