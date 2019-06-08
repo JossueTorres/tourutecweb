@@ -19,7 +19,7 @@ class Seccion_controller extends CI_Controller
 		// }
 		// rtrim($postData, '&');
 $id = $this->uri->segment(2);
-var_dump($id);
+//var_dump($id);
 		$ua = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13';
 		$url = 'http://localhost:8080/UtecTourServices/Recursos/listado';
 		$ch = curl_init($url);
