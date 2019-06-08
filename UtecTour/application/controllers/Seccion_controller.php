@@ -5,21 +5,25 @@ class Seccion_controller extends CI_Controller
 {
 	public function index()
 	{
+		$secc = $this->uri->segment(2);
+		$idm = $this->uri->segment(3);
 		// $url = 'http://localhost:8080/UtecTourServices/Seccion/listado/';
 		//creamos        
-		// $_param = array(
-		// 	'ddlSec' => $this->input->post("ddlsec"),
-		// 	'ddlIdm' => $this->input->post("ddlidm"),
-		// );
-		//__________________________________________________________________________________
-		// $postData = '';
-		// //create name value pairs seperated by &
-		// foreach ($_param as $k => $v) {
-		// 	$postData .= $k . '=' . $v . '&';
-		// }
-		// rtrim($postData, '&');
-		$secc = $this->uri->segment(2);
-		$idm = $this->uri->segment(2);
+		$_param = array(
+			'cod' => $secc,
+            'sec' => $idm,
+            'idm' => '',
+			'url' => '',
+			'tip' => ''
+		);
+		// __________________________________________________________________________________
+		$postData = '';
+		//create name value pairs seperated by &
+		foreach ($_param as $k => $v) {
+			$postData .= $k . '=' . $v . '&';
+		}
+		rtrim($postData, '&');
+		
 		//var_dump($id);
 		$ua = 'Mozilla/5.0 (Windows; U; Windows NT 5.1; en-US) AppleWebKit/525.13 (KHTML, like Gecko) Chrome/0.A.B.C Safari/525.13';
 		$url = 'http://localhost:8080/UtecTourServices/Recursos/listado';
@@ -35,15 +39,15 @@ class Seccion_controller extends CI_Controller
 		curl_setopt($ch, CURLOPT_AUTOREFERER, true);
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_MAXREDIRS, 20);
-		// curl_setopt($ch, CURLOPT_POST, count($postData));
-		// curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
+		curl_setopt($ch, CURLOPT_POST, count($_param));
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $postData);
 
-		$output = curl_exec($ch);
+		$data['lista'] = json_decode(curl_exec($ch));
 		// $last = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL);	
 
 		curl_close($ch);
 
-		$data['lista'] = json_decode($output);
+		// $data['lista'] = json_decode($output);
 
 		$_param = array(
 			'sec' => $secc,
