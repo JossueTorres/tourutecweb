@@ -10,9 +10,9 @@ class Seccion_controller extends CI_Controller
 		// $url = 'http://localhost:8080/UtecTourServices/Seccion/listado/';
 		//creamos        
 		$_param = array(
-			'cod' => $secc,
-            'sec' => $idm,
-            'idm' => '',
+			'cod' => 0,
+            'sec' => $secc,
+            'idm' => $idm,
 			'url' => '',
 			'tip' => ''
 		);
