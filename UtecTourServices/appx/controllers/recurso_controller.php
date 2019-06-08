@@ -13,7 +13,7 @@ class recurso_controller extends REST_Controller
     }
 
     //API -  Regresa todos los registros
-    function listaRecursos_get()
+    function listaRecursos_post()
     {
         $cod = $this->post('txtCod');
         $sec = $this->post('ddlSec');
