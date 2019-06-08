@@ -13,14 +13,14 @@ class seccion_controller extends REST_Controller
     }
 
     //API -  Regresa todos los registros
-    function listaSecciones_get()
+    function listaSecciones_post()
     {
-        $cod = $this->post('txtCod');
-        $edf = $this->post('ddlEdf');
-        $orde = $this->post('txtOrd');
-        $nom = $this->post('txtNom');        
-        $lat = $this->post('txtLat');
-        $lon = $this->post('txtLon');        
+        $cod = $this->post('cod');
+        $edf = $this->post('edf');
+        $orde = $this->post('orde');
+        $nom = $this->post('nom');        
+        $lat = $this->post('lat');
+        $lon = $this->post('lon');        
         $filtros = array(
             'cod' => $cod,
             'edf' => $edf,
