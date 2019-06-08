@@ -13,17 +13,17 @@ class texto_controller extends REST_Controller
     }
 
     //API -  Regresa todos los registros
-    function listaTextos_get()
+    function listaTextos_post()
     {
-        $sec = $this->post('ddlSec');
-        $idm = $this->post('ddlIdm');
-        $tit = $this->post('txtTit');
-        $con = $this->post('txtCon');
+        $sec = $this->post('cod');
+        $idm = $this->post('nom');
+        $tit = $this->post('ico');
+        $con = $this->post('aud');
         $filtros = array(
-            'cod' => $sec,
-            'nom' => $idm,
-            'ico' => $tit,
-            'aud' => $con
+            'sec' => $sec,
+            'idm' => $idm,
+            'tit' => $tit,
+            'con' => $con
         );
         $list = $this->clTexto->getListaTextos($filtros);
         if ($list) {
@@ -37,16 +37,16 @@ class texto_controller extends REST_Controller
     //API - Guarda y actualiza los datos
     function guardarDatos_post()
     {
-        $sec = $this->post('ddlSec');
-        $idm = $this->post('ddlIdm');
-        $tit = $this->post('txtTit');
-        $con = $this->post('txtCon');
+        $sec = $this->post('sec');
+        $idm = $this->post('idm');
+        $tit = $this->post('tit');
+        $con = $this->post('con');
         $cod = array('sec' => $sec, 'idm' => $idm);
         $data = array(
-            'cod' => $sec,
-            'nom' => $idm,
-            'ico' => $tit,
-            'aud' => $con
+            'sec' => $sec,
+            'idm' => $idm,
+            'tit' => 0,
+            'con' => '',
         );
         $result = $this->clTexto->guardarDatos($cod, $data);
         if ($result)
@@ -58,8 +58,8 @@ class texto_controller extends REST_Controller
     //API - Borra registros
     function borrarDatos_post()
     {
-        $sec = $this->post('ddlSec');
-        $idm = $this->post('ddlIdm');
+        $sec = $this->post('sec');
+        $idm = $this->post('idm');
         $id = array(
             'sec' => $sec,
             'idm' => $idm,
