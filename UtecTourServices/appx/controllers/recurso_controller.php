@@ -15,11 +15,11 @@ class recurso_controller extends REST_Controller
     //API -  Regresa todos los registros
     function listaRecursos_post()
     {
-        $cod = $this->post('txtCod');
-        $sec = $this->post('ddlSec');
-        $idm = $this->post('ddlIdm');
-        $url = $this->post('txtUrl');
-        $tip = $this->post('ddlTip');
+        $cod = $this->post('cod');
+        $sec = $this->post('sec');
+        $idm = $this->post('idm');
+        $url = $this->post('url');
+        $tip = $this->post('tip');
         $filtros = array(
             'cod' => $cod,
             'sec' => $sec,
